@@ -10,14 +10,14 @@ def long_description():
         return fp.read()
 
 setup(
-    name='Django-admin-inline-actions',
+    name='django_inlines_actions',
     version=0.1,
     author='kvirtx@gmail.com',
     author_email='kvirtx@gmail.com',
-    url='https://github.com/kvirt/django-admin-inline-actions',
+    url='https://github.com/kvirt/django-inlines-actions',
     description='Actions for Django inline admin',
     long_description=long_description(),
-    packages=[str('admin_inline_actions')],
+    packages=[str('inlines_actions')],
     include_package_data=True,
     classifiers=[
         'Framework :: Django',

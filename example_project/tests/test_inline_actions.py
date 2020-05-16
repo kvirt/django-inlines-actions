@@ -59,6 +59,15 @@ def test_no_mixins(admin_client, author):
     assert len(actions) == 0
 
 
+def test_permissions_failed(admin_client, author):
+    url = reverse('admin:example_app_author9_change', args=(1,))
+    changeview = admin_client.get(url)
+
+    actions = fromstring(changeview.rendered_content).xpath('//td[@class="field-render_inline_actions"]//p/a')
+
+    assert len(actions) == 0
+
+
 def test_view(admin_client, author):
     from example_app.models import Article2
     article = Article2.objects.first()
@@ -82,12 +91,12 @@ def test_view(admin_client, author):
 
 def test_view_invalid_permissions(admin_client, author):
     url = reverse(
-        'admin:example_app_author4_make_published2',
+        'admin:example_app_author4_make_published3',
         kwargs={
             'parent_pk': 1,
             'model_name': 'article4',
             'pk': 1,
-            'action': 'make_published2',
+            'action': 'make_published3',
         },
     )
 
@@ -101,19 +110,6 @@ def test_view_invalid_permissions(admin_client, author):
             'model_name': 'article4',
             'pk': 1,
             'action': 'make_published',
-        },
-    )
-
-    response = admin_client.get(url)
-    assert response.status_code == 302
-
-    url = reverse(
-        'admin:example_app_author4_make_published3',
-        kwargs={
-            'parent_pk': 1,
-            'model_name': 'article4',
-            'pk': 1,
-            'action': 'make_published3',
         },
     )
 

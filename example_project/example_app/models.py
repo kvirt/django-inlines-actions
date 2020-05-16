@@ -111,3 +111,13 @@ class Article8(Article):
         'example_app.Author8',
         on_delete=models.CASCADE
     )
+
+class Author9(Author):
+    pass
+
+
+class Article9(Article):
+    author = models.ForeignKey(
+        'example_app.Author9',
+        on_delete=models.CASCADE
+    )

@@ -4,26 +4,26 @@ DJANGO ADMIN INLINE ACTIONS
 
 Easy-to-use actions for Django admin inlines
 
-.. image:: https://img.shields.io/github/workflow/status/kvirt/django-admin-inline-actions/GH
-    :target: https://github.com/kvirt/django-admin-inline-actions/actions/runs/106638267
+.. image:: https://img.shields.io/github/workflow/status/kvirt/django-inlines-actions/GH
+    :target: https://github.com/kvirt/django-inlines-actions/actions/runs/106638267
 
-.. image:: https://img.shields.io/codecov/c/github/kvirt/django-admin-inline-actions
-    :target: https://codecov.io/gh/kvirt/django-admin-inline-actions
+.. image:: https://img.shields.io/codecov/c/github/kvirt/django-inlines-actions
+    :target: https://codecov.io/gh/kvirt/django-inlines-actions
 
-.. image:: https://img.shields.io/pypi/v/django-admin-inline-actions
-    :target: https://pypi.org/project/Django-admin-inline-actions/
+.. image:: https://img.shields.io/pypi/v/django-inlines-actions
+    :target: https://pypi.org/project/django-inlines-actions/
 
 
 Installation
 ============
 
-1. Install django_admin_inline_actions
+1. Install django_inlines_actions
 
     .. code-block:: shell
 
-        pip install django_admin_inline_actions
+        pip install django_inlines_actions
 
-2. Add ``admin_inline_actions`` to your ``INSTALLED_APPS``.
+2. Add ``inlines_actions`` to your ``INSTALLED_APPS``.
 
 3. Add the ``InlineActionsModelAdminMixin`` to your ``ModelAdmin``.
 

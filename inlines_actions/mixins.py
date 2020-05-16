@@ -17,7 +17,7 @@ class InlineActionsMixin:
 
     class Media:
         css = {
-            'all': ('django_admin_inline_actions/css/styles.css',),
+            'all': ('inlines_actions/css/styles.css',),
         }
 
     def get_inline_actions(self, request, parent_obj):

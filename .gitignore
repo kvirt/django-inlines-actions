@@ -37,5 +37,6 @@ __pycache__
 tmp_fs
 .vscode/
 .run
+coverage.xml
 
 .pytest_cache

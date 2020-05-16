@@ -40,7 +40,7 @@ INSTALLED_APPS = [
 
     'example_app',
 
-    'admin_inline_actions',
+    'inlines_actions',
 ]
 
 MIDDLEWARE = [
