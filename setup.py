@@ -2,27 +2,21 @@
 from __future__ import unicode_literals
 
 import io
-import os
-import re
 
 from setuptools import setup
 
-
-def read(*parts):
-    filename = os.path.join(os.path.abspath(os.path.dirname(__file__)), *parts)
-
-    with io.open(filename, encoding='utf-8', mode='rt') as fp:
+def long_description():
+    with io.open('README.rst', encoding='utf-8') as fp:
         return fp.read()
 
-
 setup(
-    name='django-admin-inline-actions',
+    name='Django-admin-inline-actions',
     version=0.1,
     author='kvirtx@gmail.com',
     author_email='kvirtx@gmail.com',
-    url='https://github.com/kvirtx/django-admin-inline-actions',
+    url='https://github.com/kvirt/django-admin-inline-actions',
     description='Actions for Django inline admin',
-    long_description=read('README.rst'),
+    long_description=long_description(),
     packages=[str('admin_inline_actions')],
     include_package_data=True,
     classifiers=[

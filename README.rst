@@ -10,6 +10,10 @@ Easy-to-use actions for Django admin inlines
 .. image:: https://img.shields.io/codecov/c/github/kvirt/django-admin-inline-actions
     :target: https://codecov.io/gh/kvirt/django-admin-inline-actions
 
+.. image:: https://img.shields.io/pypi/v/django-admin-inline-actions
+    :target: https://pypi.org/project/Django-admin-inline-actions/
+
+
 Installation
 ============
 
@@ -58,7 +62,7 @@ Usage
 Features
 ========
 
-* Permissions
+Permissions
 -------------
 
     Permissions are instance of list/tuple classes and can be either custom function or django built-in permission.
@@ -79,7 +83,7 @@ Features
 
     If ``permissions`` returns ``False`` action will no be rendered for user and action will raise ``PermissionDenied`` on execution.
 
-* Short Description
+Short Description
 -------------------
 
     Short Description are either custom function or simple string.
@@ -100,7 +104,7 @@ Features
 
         def short_description_func_name(self, request, obj, parent_obj):
 
-* Css Class
+Css Class
 -----------
 
     Css Class are either custom function or simple string.
