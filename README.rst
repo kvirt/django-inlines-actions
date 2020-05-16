@@ -132,8 +132,8 @@ Example
 .. code-block:: python
 
     from django.contrib import admin
-    from admin_inline_actions.admin import InlineActionsMixin
-    from admin_inline_actions.admin import InlineActionsModelAdminMixin
+    from inlines_actions.admin import InlineActionsMixin
+    from inlines_actions.admin import InlineActionsModelAdminMixin
 
     from .models import Article1, Author1
 
