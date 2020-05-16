@@ -4,6 +4,12 @@ DJANGO ADMIN INLINE ACTIONS
 
 Easy-to-use actions for Django admin inlines
 
+.. image:: https://img.shields.io/github/workflow/status/kvirt/django-admin-inline-actions/GH
+    :target: https://github.com/kvirt/django-admin-inline-actions/actions/runs/106638267
+
+.. image:: https://img.shields.io/codecov/c/github/kvirt/django-admin-inline-actions
+    :target: https://codecov.io/gh/kvirt/django-admin-inline-actions
+
 Installation
 ============
 
