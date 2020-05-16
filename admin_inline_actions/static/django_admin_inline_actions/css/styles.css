@@ -1,0 +1,20 @@
+.inline-action {
+  background-color: #79aec8;
+  border: none;
+  color: white;
+  padding: 10px 15px;
+  margin-left: 5px;
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+.inline-action:link, .inline-action:visited {
+    color: #fbfcfd;
+}
+
+.inline-action:hover {
+  background-color: #609ab6;
+}
