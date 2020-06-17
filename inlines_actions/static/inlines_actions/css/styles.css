@@ -3,12 +3,13 @@
   border: none;
   color: white;
   padding: 10px 15px;
-  margin-left: 5px;
+  margin: 5px;
   text-align: center;
   font-size: 16px;
   cursor: pointer;
   border-radius: 4px;
   white-space: nowrap;
+  display: block;
 }
 
 .inline-action:link, .inline-action:visited {
