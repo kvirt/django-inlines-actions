@@ -11,7 +11,7 @@ def long_description():
 
 setup(
     name='django_inlines_actions',
-    version=0.2,
+    version='0.2.1',
     author='kvirtx@gmail.com',
     author_email='kvirtx@gmail.com',
     url='https://github.com/kvirt/django-inlines-actions',
