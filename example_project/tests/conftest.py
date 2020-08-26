@@ -54,7 +54,10 @@ def action_url_factory():
 
     def _action_url_factory(action_name, model_name='author'):
         return reverse(
-            f'admin:example_app_{model_name}_{action_name}',
+            'admin:example_app_%(model_name)s_%(action_name)s' % {
+                'model_name': model_name,
+                'action_name': action_name,
+            },
             kwargs={
                 'parent_pk': 1,
                 'model_name': 'article',
