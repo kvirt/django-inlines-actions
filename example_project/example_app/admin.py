@@ -4,33 +4,31 @@ from inlines_actions.mixins import (
 )
 from django.shortcuts import redirect
 from django.urls import reverse
-from .models import (
-    Article, Article1, Article2, Article3, Article4, Article5, Article6, Article7, Article8, Article9,
-    Author, Author1, Author2, Author3, Author4, Author5, Author6, Author7, Author8, Author9,
-)
+from .models import Article, Author, AuthorInvalid
 
-
-class BaseAdminInline(
+class AdminInlineMixin(
     InlineActionsMixin,
     admin.TabularInline,
 ):
-    extra = 0
-    model = Article1
-    inline_actions = ('make_published',)
 
-    def make_published(self, request, obj, parent_obj):
+    extra = 0
+    model = Article
+
+
+class BaseAdminInline(AdminInlineMixin):
+
+    inline_actions = ('make_published', 'make_published2', 'make_published3')
+
+    def make_published3(self, request, obj, parent_obj):
         obj.is_published = not obj.is_published
         obj.save()
 
+    def make_published2(self, request, obj, parent_obj):
+        obj.is_published = not obj.is_published
+        obj.save()
 
-class AllFeaturesInline(
-    InlineActionsMixin,
-    admin.TabularInline,
-):
-
-    extra = 0
-    model = Article2
-    inline_actions = ('make_published',)
+        url = reverse('admin:example_app_author_changelist')
+        return redirect(url)
 
     def make_published(self, request, obj, parent_obj):
         obj.is_published = not obj.is_published
@@ -51,38 +49,14 @@ class AllFeaturesInline(
     make_published.css_class = make_published_css_class
 
 
-class MultipleActionsInline(
-    InlineActionsMixin,
-    admin.TabularInline,
-):
+class InvalidPermissionsInline(AdminInlineMixin):
 
-    extra = 0
-    model = Article3
-    inline_actions = ('make_published', 'make_published2')
-
-    def make_published2(self, request, obj, parent_obj):
-        obj.is_published = not obj.is_published
-        obj.save()
-
-    def make_published(self, request, obj, parent_obj):
-        obj.is_published = not obj.is_published
-        obj.save()
-
-
-class InvalidPermissionsInline(
-    InlineActionsMixin,
-    admin.TabularInline,
-):
-
-    extra = 0
-    model = Article4
     inline_actions = ('make_published', 'make_published2', 'make_published3')
 
     def make_published3(self, request, obj, parent_obj):
         obj.is_published = not obj.is_published
         obj.save()
 
-
     def make_published2(self, request, obj, parent_obj):
         obj.is_published = not obj.is_published
         obj.save()
@@ -90,10 +64,6 @@ class InvalidPermissionsInline(
     def make_published(self, request, obj, parent_obj):
         obj.is_published = not obj.is_published
         obj.save()
-
-    def make_published_permission(self, request, obj, parent_obj):
-        if not request.user.is_superuser:
-            return False
 
     def make_published_permission2(self, request, obj, parent_obj):
         if request.user.is_superuser:
@@ -109,13 +79,13 @@ class NoActionsInline(
     admin.TabularInline,
 ):
     extra = 0
-    model = Article5
+    model = Article
 
 
 class NoMixinInline(admin.TabularInline):
 
     extra = 0
-    model = Article6
+    model = Article
     inline_actions = ('make_published',)
 
     def make_published(self, request, obj, parent_obj):
@@ -123,47 +93,17 @@ class NoMixinInline(admin.TabularInline):
         obj.save()
 
 
-class CustomResponseInline(
-    InlineActionsMixin,
-    admin.TabularInline,
-):
-
-    extra = 0
-    model = Article7
-    inline_actions = ('make_published',)
+class WrongActionNameInline(AdminInlineMixin):
 
     def make_published(self, request, obj, parent_obj):
         obj.is_published = not obj.is_published
         obj.save()
 
-        url = reverse('admin:example_app_author1_add')
-        return redirect(url)
-
-
-class WrongActionNameInline(
-    InlineActionsMixin,
-    admin.TabularInline,
-):
-
-    extra = 0
-    model = Article8
     inline_actions = ('foo_bar',)
 
-    def make_published(self, request, obj, parent_obj):
-        obj.is_published = not obj.is_published
-        obj.save()
 
-        url = reverse('admin:example_app_author1_add')
-        return redirect(url)
+class PermissionsFailedInline(AdminInlineMixin):
 
-
-class PermissionsFailedInline(
-    InlineActionsMixin,
-    admin.TabularInline,
-):
-
-    extra = 0
-    model = Article9
     inline_actions = ('make_published',)
 
     def make_published(self, request, obj, parent_obj):
@@ -184,52 +124,13 @@ class BaseModelAdmin(
     inlines = (BaseAdminInline,)
 
 
-class AllFeaturesModelAdmin(BaseModelAdmin):
-    inlines = (AllFeaturesInline,)
-
-
-class MultipleActionsModelAdmin(BaseModelAdmin):
-    inlines = (MultipleActionsInline,)
-
-
-class InvalidPermissionsModelAdmin(BaseModelAdmin):
+class InvalidModelAdmin(
+    InlineActionsModelAdminMixin,
+    admin.ModelAdmin,
+):
     inlines = (InvalidPermissionsInline,)
 
 
-class NoActionsModelAdmin(BaseModelAdmin):
-    inlines = (NoActionsInline,)
+admin.site.register(Author, BaseModelAdmin)
 
-
-class NoMixinModelAdmin(BaseModelAdmin):
-    inlines = (NoMixinInline,)
-
-
-class CustomResponseModelAdmin(BaseModelAdmin):
-    inlines = (CustomResponseInline,)
-
-
-class WrongActionNameModelAdmin(BaseModelAdmin):
-    inlines = (WrongActionNameInline,)
-
-
-class PermissionsFailedModelAdmin(BaseModelAdmin):
-    inlines = (PermissionsFailedInline,)
-
-
-admin.site.register(Author1, BaseModelAdmin)
-
-admin.site.register(Author2, AllFeaturesModelAdmin)
-
-admin.site.register(Author3, MultipleActionsModelAdmin)
-
-admin.site.register(Author4, InvalidPermissionsModelAdmin)
-
-admin.site.register(Author5, NoActionsModelAdmin)
-
-admin.site.register(Author6, NoMixinModelAdmin)
-
-admin.site.register(Author7, CustomResponseModelAdmin)
-
-admin.site.register(Author8, WrongActionNameModelAdmin)
-
-admin.site.register(Author9, PermissionsFailedModelAdmin)
+admin.site.register(AuthorInvalid, InvalidModelAdmin)
